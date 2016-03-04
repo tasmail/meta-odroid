@@ -11,8 +11,13 @@ This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
-branch: master
+branch: fido
 revision: HEAD
+
+Odroid-xu3:
+to install image onto an mmc device:
+
+sudo dd if={path}/deploy/images/odroid-xu3/core-image-minimal-odroid-xu3.sdcard of=/dev/{mmc device}
 
 Maintenance
 -----------
