@@ -6,14 +6,15 @@ ODROID-U2: Not tested after the fork
 ODROID-XU: ditto
 ODROID-XU3: tested
 ODROID-XU4: untested but compat with XU3
-ODROID-C2: in the mail
 
 This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
-branch: master
-revision: HEAD
+branch: jethro
+
+Use meta-odroid 
+branch: jethro
 
 Maintenance
 -----------
