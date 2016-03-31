@@ -9,7 +9,7 @@ COMPATIBLE_MACHINE_odroid-xu = "odroid-xu"
 LINUX_VERSION = "3.4"
 LINUX_VERSION_EXTENSION = "-custom"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 # from where to fetch the kernel
 KERNEL_REPO_OWNER ??= "hardkernel"
@@ -24,7 +24,6 @@ PV = "${LINUX_VERSION}"
 SRC_URI = " \
   ${KERNEL_REPO_URI};nocheckout=1;branch=${KBRANCH} \
   file://defconfig \
-  file://make_sd.sh \
 "
 
 do_deploy_append() {
@@ -35,5 +34,4 @@ do_deploy_append() {
     cp -v u-boot.bin ${DEPLOYDIR}
     cp -v *tzsw* ${DEPLOYDIR}
     cp -v sd_fusing.sh ${DEPLOYDIR}  
-    cp -v ${WORKDIR}/make_sd.sh ${DEPLOYDIR}
 }
