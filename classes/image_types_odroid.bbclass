@@ -90,7 +90,7 @@ generate_odroid_xu3_sdcard () {
 		u-boot)
             dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel of=${SDCARD} conv=notrunc seek=${UBOOT_B1_POS}
             dd if=${DEPLOY_DIR_IMAGE}/bl2.bin.hardkernel of=${SDCARD} conv=notrunc seek=${UBOOT_B2_POS}
-            dd if=${DEPLOY_DIR_IMAGE}/u-boot.${UBOOT_SUFFIX} of=${SDCARD} conv=notrunc seek=${UBOOT_BIN_POS}
+            dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=${SDCARD} conv=notrunc seek=${UBOOT_BIN_POS}
             dd if=${DEPLOY_DIR_IMAGE}/tzsw.bin.hardkernel of=${SDCARD} conv=notrunc seek=${UBOOT_TZSW_POS}
             dd if=/dev/zero of=${SDCARD} seek=${UBOOT_ENV_POS} conv=notrunc count=32 bs=512
 		;;
