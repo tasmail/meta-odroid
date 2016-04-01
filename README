@@ -1,9 +1,8 @@
 OpenEmbedded BSP layer for hardkernel ODROID devices
 
 Status of support devices:
-ODROID-C1: SD card image works (it is tested with core-image-minimal)
-ODROID-U2: Not tested after the fork
-ODROID-XU: ditto
+ODROID-C1: wont compile in Jethro
+ODROID-U2: see fido branch
 ODROID-XU3: tested
 ODROID-XU4: untested but compat with XU3
 
