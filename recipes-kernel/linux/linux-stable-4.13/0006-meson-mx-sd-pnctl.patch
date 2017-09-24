@@ -1,0 +1,25 @@
+Index: arch/arm/boot/dts/meson8b.dtsi
+===================================================================
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -113,6 +113,14 @@
+ 				function = "uart_ao";
+ 			};
+ 		};
++		sdio_b_pins: sdio_b {
++			mux {
++				groups = "sd_d1_b", "sd_d0_b", "sd_clk_b", "sd_cmd_b","sd_d3_b", "sd_d2_b";
++					
++				function = "sd_b";
++			};
++		};
++
+ 	};
+ };
+ 
+@@ -248,3 +256,5 @@
+ 	clock-names = "usb_general", "usb";
+ 	resets = <&reset RESET_USB_OTG>;
+ };
++
++

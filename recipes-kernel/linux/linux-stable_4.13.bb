@@ -3,7 +3,14 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 LINUX_VERSION ?= "4.13.3"
 
 SRCREV ?= "56b9b16136e23ed57e81f40697b6d781e693d061"
-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-4.13.y"
+SRC_URI = "\
+	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-4.13.y \
+	file://0001-dt-bindings-mmc-Document-the-Amlogic-Meson8-and-Meso.patch \
+	file://0002-mmc-meson-mx-sdio-Add-a-driver-for-the-Amlogic-Meson.patch \
+	file://0004-ARM-dts-meson-add-the-MMC-controller.patch \
+	file://0005-meson-mx-odroid-mmc.patch \
+	file://0006-meson-mx-sd-pnctl.patch \
+"
 
 O_KERNEL_CONFIG_odroid-xu3  = "odroid-xu3"
 O_KERNEL_CONFIG_odroid-xu4  = "odroid-xu3"

@@ -1,0 +1,77 @@
+From 9719569393cbd5a38b850dfbd3a214ada8de5112 Mon Sep 17 00:00:00 2001
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 17 Apr 2017 11:16:08 +0200
+Subject: [PATCH] ARM: dts: meson: add the MMC controller
+
+Meson6, Meson8 and Meson8b are using the same MMC controller IP. This
+adds the MMC controller node to meson.dtsi so it can be used by all
+SoCs.
+
+The controller itself is a bit special, because it has multiple slots.
+Each slot is accessed through a sub-node of the controller. To simplify
+the device .dts files each SoC enables the MMC controller node directly
+so the devices only have to enable the corresponding slots.
+On Meson6 the controller is not enabled because I don't have hardware to
+test it there.
+
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson.dtsi   | 9 +++++++++
+ arch/arm/boot/dts/meson8.dtsi  | 6 ++++++
+ arch/arm/boot/dts/meson8b.dtsi | 6 ++++++
+ 3 files changed, 21 insertions(+)
+
+Index: kernel-source/arch/arm/boot/dts/meson.dtsi
+===================================================================
+--- kernel-source.orig/arch/arm/boot/dts/meson.dtsi
++++ kernel-source/arch/arm/boot/dts/meson.dtsi
+@@ -146,6 +146,15 @@
+ 				status = "disabled";
+ 			};
+ 
++			sdio: mmc@8c20 {
++				compatible = "amlogic,meson-mx-sdio";
++				reg = <0x8c20 0x20>;
++				interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
+ 			spifc: spi@8c80 {
+ 				compatible = "amlogic,meson6-spifc";
+ 				reg = <0x8c80 0x80>;
+Index: kernel-source/arch/arm/boot/dts/meson8.dtsi
+===================================================================
+--- kernel-source.orig/arch/arm/boot/dts/meson8.dtsi
++++ kernel-source/arch/arm/boot/dts/meson8.dtsi
+@@ -278,6 +278,12 @@
+ 	clock-names = "clkin", "core", "sana";
+ };
+ 
++&sdio {
++	compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
++	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
++	clock-names = "core", "clkin";
++};
++
+ &spifc {
+ 	clocks = <&clkc CLKID_CLK81>;
+ };
+Index: kernel-source/arch/arm/boot/dts/meson8b.dtsi
+===================================================================
+--- kernel-source.orig/arch/arm/boot/dts/meson8b.dtsi
++++ kernel-source/arch/arm/boot/dts/meson8b.dtsi
+@@ -201,6 +201,12 @@
+ 	clock-names = "clkin", "core", "sana";
+ };
+ 
++&sdio {
++	compatible = "amlogic,meson8b-sdio", "amlogic,meson-mx-sdio";
++	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
++	clock-names = "core", "clkin";
++};
++
+ &uart_AO {
+ 	clocks = <&clkc CLKID_CLK81>;
+ };

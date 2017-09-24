@@ -1,0 +1,21 @@
+Index: kernel-source/arch/arm/boot/dts/meson8b-odroidc1.dts
+===================================================================
+--- kernel-source.orig/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ kernel-source/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -76,3 +76,16 @@
+ 	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-names = "default";
+ };
++
++&sdio {
++	status = "okay";
++        pinctrl-0 = <&sdio_b_pins>;
++        pinctrl-names = "default";
++
++	meson,sd-port = <1>;
++	broken-cd;
++
++        bus-width = <4>;
++        cap-sd-highspeed;
++        max-frequency = <100000000>;
++};
