@@ -21,7 +21,7 @@ This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
-branch: master
+branch: rocko
 revision: HEAD
 
 Maintenance
