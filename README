@@ -17,8 +17,7 @@ This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
-branch: master
-revision: HEAD
+branch: thud
 
 Maintenance
 -----------
@@ -26,7 +25,7 @@ Maintenance
 Send pull requests, patches, comments or questions to akuster808@gmail.com
 
 When sending single patches, please using something like:
-git send-email -1 -M --to akuster808@gmail.com --subject-prefix='meta-odroid][PATCH'
+git send-email -1 -M --to akuster808@gmail.com --subject-prefix='meta-odroid][thud][PATCH'
 
 Layer Maintainer:  Armin Kuster <akuster808@gmail.com>
 
