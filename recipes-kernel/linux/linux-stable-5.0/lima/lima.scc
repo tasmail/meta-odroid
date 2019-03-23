@@ -1,0 +1,5 @@
+patch 0001-drm-export-drm_timeout_abs_to_jiffies.patch
+patch 0002-drm-Add-reservation_object-to-drm_gem_object.patch
+patch 0003-drm-sched-Refactor-ring-mirror-list-handling.patch
+patch 0004-drm-lima-driver-for-ARM-Mali4xx-GPUs.patch
+patch 0005-drm-include-idr.h-from-drm_file.h.patch
