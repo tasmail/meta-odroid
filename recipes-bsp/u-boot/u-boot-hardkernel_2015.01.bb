@@ -14,9 +14,11 @@ USE_BOOTSCR = "0"
 
 UBOOT_MACHINE_odroid-c2 = "odroidc2_defconfig"
 UBOOT_MACHINE_odroid-n2-hardkernel = "odroidn2_defconfig"
+UBOOT_MACHINE_odroid-n2 = "odroidn2_defconfig"
 
 BRANCH_odroid-c2 = "odroidc2-v2015.01"
 BRANCH_odroid-n2-hardkernel = "odroidn2-v2015.01"
+BRANCH_odroid-n2 = "odroidn2-v2015.01"
 
 COMMON_SRC_URI = "git://github.com/hardkernel/u-boot.git;branch=${BRANCH}"
 
@@ -38,6 +40,13 @@ SRC_URI_odroid-n2-hardkernel = "\
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
 
+SRC_URI_odroid-n2 = "\
+    ${COMMON_SRC_URI} \
+    file://odroid-n2/boot.ini \
+    https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
+    https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
+    "
+
 SRC_URI[aarch64toolchain.md5sum] = "631c4c7b1fe9cb115cf51bd6a926acb7"
 SRC_URI[aarch64toolchain.sha256sum] = "d1f2761b697e6b49f5db1ec0cd48d2fd98224be8cb5ef182093f691e99c923eb"
 
@@ -51,6 +60,7 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
 
 SRCREV_odroid-n2-hardkernel = "travis/odroidn2-25"
+SRCREV_odroid-n2 = "2c9059820b961de210634f2dc739cb8b48f6bd99"
 
 PR = "${PV}+git${SRCPV}"
 
@@ -67,16 +77,24 @@ DEPENDS += "bc-native atf-native"
 
 EXTRA_OEMAKE_odroid-c2 = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 EXTRA_OEMAKE_odroid-n2-hardkernel = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+EXTRA_OEMAKE_odroid-n2 = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 
 LINAROTOOLCHAIN = "4.9.4-2017.01"
 LINAROTOOLCHAIN_odroid-n2-hardkernel = "4.8-2013.11"
+LINAROTOOLCHAIN_odroid-n2 = "4.8-2013.11"
 TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-linux-gnu-"
 HOST_PREFIX_odroid-c2 = "${TOOLCHAIN_PREFIX}"
 
 PATH_prepend_odroid-n2-hardkernel ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
+PATH_prepend_odroid-n2 ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 
 do_configure_odroid-n2-hardkernel () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidn2_config
+}
+
+do_configure_odroid-n2 () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidn2_config
 }
@@ -89,8 +107,12 @@ do_compile_odroid-n2-hardkernel () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
 }
 
+do_compile_odroid-n2 () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
+}
+
 do_compile_append () {
 	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
 }
 
-COMPATIBLE_MACHINE = "(odroid-c2|odroid-n2-hardkernel)"
+COMPATIBLE_MACHINE = "(odroid-c2|odroid-n2-hardkernel|odroid-n2)"
