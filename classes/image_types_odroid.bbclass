@@ -57,3 +57,7 @@ IMAGE_CMD_wic_append_odroid-c2() {
 IMAGE_CMD_wic_append_odroid-n2-hardkernel() {
     dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
 }
+
+IMAGE_CMD_wic_append_odroid-n2() {
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
+}
