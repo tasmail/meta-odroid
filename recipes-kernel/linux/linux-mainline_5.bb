@@ -1,0 +1,9 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+
+LINUX_VERSION ?= "5.3-rc6"
+SRCREV ?= "a55aa89aab90fae7c815b0551b07be37db359d76"
+SRCREV_meta ?= "999b6394fd75e1ec840f395d35289011dd96184c"
+
+require linux-mainline.inc
+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+
