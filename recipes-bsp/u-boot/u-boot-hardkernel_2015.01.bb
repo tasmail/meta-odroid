@@ -11,6 +11,7 @@ PROVIDES += "virtual/bootloader u-boot"
 LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 USE_BOOTSCR = "0"
+USE_BOOTSCR_odroid-n2 = "1"
 
 UBOOT_MACHINE_odroid-c2 = "odroidc2_defconfig"
 UBOOT_MACHINE_odroid-n2-hardkernel = "odroidn2_defconfig"
@@ -42,7 +43,6 @@ SRC_URI_odroid-n2-hardkernel = "\
 
 SRC_URI_odroid-n2 = "\
     ${COMMON_SRC_URI} \
-    file://odroid-n2/boot.ini \
     https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
@@ -60,7 +60,7 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
 
 SRCREV_odroid-n2-hardkernel = "travis/odroidn2-25"
-SRCREV_odroid-n2 = "2c9059820b961de210634f2dc739cb8b48f6bd99"
+SRCREV_odroid-n2 = "a374ff35130f09ba99717c5da3bd46fc3137518f"
 
 PR = "${PV}+git${SRCPV}"
 
@@ -99,7 +99,7 @@ do_configure_odroid-n2 () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidn2_config
 }
 
-do_configure_append() {
+do_configure_odroid-n2-hardkernel_append() {
 	cp ${WORKDIR}/${MACHINE}/boot.ini ${B}/
 }
 
