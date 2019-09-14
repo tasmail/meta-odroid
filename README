@@ -3,15 +3,17 @@ OpenEmbedded BSP layer for hardkernel ODROID devices
 Status of support devices:
 The following will boot in 5.x kernel and laste OE uboot
 ODROID-XU3: arm
-ODROID-XU3-lite: amr
+ODROID-XU3-lite: arm
 ODROID-XU4: arm
 ODROID-C2: arm64
 ODROID-HC1: arm
 ODROID-h2: x86-64
 
+This boards still uses Hardkernel u-boot: 
+ODROID-n2: arm64; linux-5.3 rc
+
 This boards still use either Hardkernel u-boot or kernel or both
 ODROID-c1: hard-kernel-uboot
-ODROID-n2: hardkernel support
 
 Mali support is may not work on 4.19 so you may want to use hard-kernel
 emmc support is not working 
