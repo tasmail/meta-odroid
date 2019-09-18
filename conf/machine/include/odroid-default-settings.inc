@@ -13,7 +13,7 @@ XSERVER = " \
 "
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
-PREFERRED_VERSION_linux-stable ?= "5.2%"
+PREFERRED_VERSION_linux-stable ?= "5.3%"
 LINUX_VERSION_EXTENSION ?= "-odroid"
 
 # Do not update fstab file when using wic images
