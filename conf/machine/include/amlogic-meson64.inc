@@ -4,4 +4,4 @@ SOC_FAMILY = "amlogic:meson-gx"
 require conf/machine/include/amlogic-meson.inc
 require conf/machine/include/arm/arch-armv8a.inc
 
-MACHINE_FEATURES_append = " mali"
+KERNEL_EXTRA_FEATURES ?= "features/drm/drm.scc"
