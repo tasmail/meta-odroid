@@ -1,2 +1,2 @@
-PACKAGECONFIG_odroid_remove  = "glamor"
-XSERVER_RRECOMMENDS_remove  = "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'xf86-input-libinput', '', d)}"
+PACKAGECONFIG_remove_meson-gx  = "glamor"
+XSERVER_RRECOMMENDS_remove = "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'xf86-input-libinput', '', d)}"
