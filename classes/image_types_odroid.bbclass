@@ -15,6 +15,7 @@ inherit image_types
 # | Uboot Env | 2625 | 2560 |  0 (user) |
 #  -------------------------------------
 #
+do_rootfs[depends] += " virtual/bootloader:do_packagedata"
 
 generic_odroid_xu_wic_cmd() {
     dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
