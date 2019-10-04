@@ -19,7 +19,6 @@ IMAGE_INSTALL = " \
     ${XSERVER} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '${MESA_PKGS}', '', d)} \
     kernel-modules \
-    odroid-edid \
     udev-extraconf \
 "
 
