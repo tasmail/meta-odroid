@@ -10,3 +10,5 @@ do_install_append () {
         rm -f ${D}/${libdir}/libwayland-egl*
     fi
 }
+
+PACKAGECONFIG_append_meson-gx = " ${@bb.utils.contains('MACHINE_FEATURES', 'lima', 'kmsro lima panfrost', '', d)}"
