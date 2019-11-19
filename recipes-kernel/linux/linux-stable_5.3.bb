@@ -1,7 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-LINUX_VERSION ?= "5.3.6"
-SRCREV ?= "a2fc8ee6676067f27d2f5c6e4d512adff3d9938c"
+LINUX_VERSION ?= "5.3.11"
+SRCREV ?= "dada86c5aaa8f2305bf8a8bf9014b60603f9f013"
 MBRANCH = "master"
 SRCREV_meta ?= "e00e22588e19c8f97ed172de322e7d358f5bf89a"
 
