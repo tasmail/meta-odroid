@@ -1,9 +1,9 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-LINUX_VERSION ?= "5.3.11"
-SRCREV ?= "dada86c5aaa8f2305bf8a8bf9014b60603f9f013"
+LINUX_VERSION ?= "5.4.0"
+SRCREV ?= "219d54332a09e8d8741c1e1982f5eae56099de85"
 MBRANCH = "master"
-SRCREV_meta ?= "e00e22588e19c8f97ed172de322e7d358f5bf89a"
+SRCREV_meta ?= "ebb7782c7eeed14367d6f843e9be276bf8d4641e"
 
 KMACHINE_odroid-n2 = "odroid-n2"
 
