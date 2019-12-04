@@ -1,0 +1,6 @@
+image: kasproject/kas:latest
+
+meta-odroid-image:
+  stage: build
+  script:
+    - kas build kas-meta-odroid-image.yml
