@@ -5,4 +5,4 @@ header:
 
 machine: odroid-xu3-lite
 distro: poky
-target: meta-odroid-image
+target: core-image-minimal
