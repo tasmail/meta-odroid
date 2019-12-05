@@ -16,10 +16,7 @@ repos:
       meta-poky:
 
 local_conf_header:
-  reduce_diskspace: |
+  meta-odroid: |
     INHERIT += "rm_work_and_downloads"
-  source_mirror_url: |
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
-  sstate_mirrors: |
     SSTATE_MIRRORS = "file://.* http://sstate.yoctoproject.org/PATH"
-
