@@ -23,6 +23,7 @@ KMACHINE_odroid-xu3-lite = "odroid-xu3-lite"
 KMACHINE_odroid-xu4 = "odroid-xu4"
 KMACHINE_odroid-c2 = "odroid-c2"
 KMACHINE_odroid-c1 = "odroid-c1"
+KMACHINE_odroid-n2 = "odroid-n2"
 
 KMETA_SRC_URI ?= " git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=${MBRANCH};destsuffix=${KMETA}"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=${KBRANCH}"

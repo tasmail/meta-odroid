@@ -5,8 +5,6 @@ SRCREV ?= "dc71226e59c276e531e6a512cdcf821b44ceb323"
 MBRANCH = "master"
 SRCREV_meta ?= "ebb7782c7eeed14367d6f843e9be276bf8d4641e"
 
-KMACHINE_odroid-n2 = "odroid-n2"
-
 require linux-stable.inc
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
