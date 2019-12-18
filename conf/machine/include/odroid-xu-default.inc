@@ -32,3 +32,4 @@ XSERVER_append = " \
     ${@bb.utils.contains('MACHINE_FEATURES', 'x11 mali', 'xf86-video-armsoc', '', d)} \
 "
 
+SERIAL_CONSOLES ?= "115200;ttySAC2"
