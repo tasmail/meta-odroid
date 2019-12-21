@@ -1,9 +1,9 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-LINUX_VERSION ?= "5.4.5"
-SRCREV ?= "9a088971000c4e7a4abddf9751649ead4d8a0fe0"
+LINUX_VERSION ?= "5.4.6"
+SRCREV ?= "957a16c3e6e19777865c2d629408d8b4396d6a4b"
 MBRANCH = "master"
-SRCREV_meta ?= "ebb7782c7eeed14367d6f843e9be276bf8d4641e"
+SRCREV_meta ?= "8a1f347c70792beb48b8fa69fc63b452f10d1bb8"
 
 require linux-stable.inc
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
