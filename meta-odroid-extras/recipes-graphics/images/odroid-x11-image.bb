@@ -12,7 +12,7 @@ REQUIRED_DISTRO_FEATURES = "x11"
 VIRTUAL-RUNTIME_mesa ?= ""
 VIRTUAL-RUNTIME_graphical_init_manager ?= ""
 
-MESA_PKGS ?= "libgl-mesa mesa-megadriver libglapi"
+MESA_PKGS ?= "libgl-mesa mesa libglapi"
 
 IMAGE_INSTALL = " \
     ${CORE_IMAGE_BASE_INSTALL} \

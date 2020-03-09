@@ -6,6 +6,22 @@ do_install_append_odroid () {
         rm -f ${D}/${libdir}/libGLESv1_CM.*
         rm -f ${D}/${libdir}/libGLESv2.*
         rm -f ${D}/${libdir}/libgbm*
-        rm -f ${D}/${libdir}/libwayland-egl*
+        rm -f ${D}${libdir}/pkgconfig/glesv1_cm.pc
+        rm -f ${D}${libdir}/pkgconfig/egl.pc
+        rm -f ${D}${libdir}/pkgconfig/glesv2.pc
+        rm -f ${D}${includedir}/EGL/eglext.h 
+        rm -f ${D}${includedir}/EGL/eglmesaext.h
+        rm -f ${D}${includedir}/EGL/egl.h
+        rm -f ${D}${includedir}/EGL/eglplatform.h
+        rm -f ${D}${includedir}/GLES2/gl2ext.h
+        rm -f ${D}${includedir}/GLES2/gl2platform.h
+        rm -f ${D}${includedir}/GLES2/gl2.h
+        rm -f ${D}${includedir}/GLES/egl.h
+        rm -f ${D}${includedir}/GLES/gl.h
+        rm -f ${D}${includedir}/GLES/glext.h
+        rm -f ${D}${includedir}/GLES/glplatform.h
+    	if [ -n "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}" ]; then
+            rm -f ${D}/${libdir}/libwayland-egl*
+        fi
     fi
 }
