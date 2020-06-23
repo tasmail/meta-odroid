@@ -1,12 +1,12 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-LINUX_VERSION ?= "5.6.3"
-SRCREV ?= "f9fb85751506e75ecffaa498896efbb0c886adda"
+LINUX_VERSION ?= "5.7.5"
+SRCREV ?= "66dfe45221605e11f38a0bf5eb2ee808cea7cfe7"
 MBRANCH = "master"
-SRCREV_meta ?= "9b03276aef6b6c18211ecb108f4b2a9f745c317f"
+SRCREV_meta ?= "e31896120dc72c1f35fa9e65a031d672cb67497d"
 
 require linux-stable.inc
-LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 
 KERNEL_FEATURES_append_odroid-c2 = "${@bb.utils.contains('MACHINE_FEATURES', 'lima', 'features/drm/drm.scc', '', d)}"
