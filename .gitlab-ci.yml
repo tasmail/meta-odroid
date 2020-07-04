@@ -28,4 +28,4 @@ stages:
 meta-odroid-image:
   extends: .build
   script:
--    - kas build kas-meta-odroid-image.yml
+  - kas build kas-meta-odroid-image.yml
