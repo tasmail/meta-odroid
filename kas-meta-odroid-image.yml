@@ -6,3 +6,7 @@ header:
 machine: odroid-xu3-lite
 distro: poky
 target: core-image-minimal
+
+machine: odroid-c2
+distro: poky
+target: core-image-minimal
