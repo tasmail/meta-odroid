@@ -1,7 +1,7 @@
 header:
   version: 1
   includes:
-    - kas/kas-core-image-base.yml
+    - kas-core-image-base.yml
 
 machine: odroid-xu3-lite
 distro: poky
