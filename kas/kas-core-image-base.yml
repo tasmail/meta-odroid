@@ -14,6 +14,7 @@ repos:
       meta:
       meta-poky:
 
+
 local_conf_header:
   meta-odroid: |
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
