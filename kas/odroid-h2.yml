@@ -1,0 +1,7 @@
+header:
+  version: 1
+  includes:
+    - kas-core-image-base.yml
+
+machine: odroid-h2
+distro: poky
