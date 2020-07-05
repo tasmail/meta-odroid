@@ -30,9 +30,9 @@ meta-odroid-image:
   script:
   - kas build kas-meta-odroid-image.yml
   - |
-    if [[ -n "$B2_KEY_ID" ]]; then
-        echo "Backing up $CI_DEFAULT_BRANCH"
-        rclone config create b2 b2 account $B2_KEY_ID key $B2_APP_KEY > /dev/null
-        rclone copy --ignore-existing build/sstate-cache/ b2:ak-oebuilds/sstate/$CI_DEFAULT_BRANCH/
-        rclone copy --ignore-existing build/tmp/deploy/sources/mirror/ b2:ak-oebuilds/mirror/$CI_DEFAULT_BRANCH/
-    fi
+    #if [[ -n "$B2_KEY_ID" ]]; then
+    #    echo "Backing up $CI_DEFAULT_BRANCH"
+    #    rclone config create b2 b2 account $B2_KEY_ID key $B2_APP_KEY > /dev/null
+    #    rclone copy --ignore-existing build/sstate-cache/ b2:ak-oebuilds/sstate/$CI_DEFAULT_BRANCH/
+    #    rclone copy --ignore-existing build/tmp/deploy/sources/mirror/ b2:ak-oebuilds/mirror/$CI_DEFAULT_BRANCH/
+    #fi
