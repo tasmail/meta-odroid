@@ -1,7 +1,7 @@
 header:
   version: 1
   includes:
-    - kas-core-image-base.yml
+    - kas-odroid-base.yml
 
 machine: odroid-c2
 distro: poky

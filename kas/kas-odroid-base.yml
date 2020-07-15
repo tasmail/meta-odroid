@@ -1,8 +1,7 @@
 header:
-  version: 1
+  version: 0
 
 distro: poky
-target: core-image-minimal
 
 repos:
   meta-odroid:
