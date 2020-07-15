@@ -15,12 +15,6 @@ stages:
     - rm -rf rclone-*-linux-amd64*
   after_script:
     - rm -rf build
-  artifacts:
-    name: images
-    expose_as: images
-    expire_in: 3 days
-    paths:
-      - images
   cache:
     paths:
       - layers
