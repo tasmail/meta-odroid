@@ -13,7 +13,7 @@ XSERVER = " \
 "
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-PREFERRED_VERSION_linux-yocto ?= "5.4%"
+PREFERRED_VERSION_linux-yocto ?= "5.8%"
 LINUX_VERSION_EXTENSION ?= "-odroid"
 
 # Do not update fstab file when using wic images
