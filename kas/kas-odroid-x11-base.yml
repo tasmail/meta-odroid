@@ -1,35 +1,9 @@
 header:
-  version: 8
-
-distro: poky
-
-repos:
-  meta-odroid:
-    layers:
-      ../meta-odroid:
-      meta-odroid-extras:
-
-  poky:
-    url: https://git.yoctoproject.org/git/poky
-    refspec: master
-    layers:
-      meta:
-      meta-poky:
-
-  meta-openembedded:
-    url: http://git.openembedded.org/meta-openembedded
-    refspec: master
-    layers:
-      meta-oe:
+    version: 9
+    includes:
+        - kas-odroid-base.yml
 
 local_conf_header:
-  meta-odroid: |
-    SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
-    SSTATE_MIRRORS = "file://.* http://sstate.yoctoproject.org/dev/PATH;downloadfilename=PATH \n"
-    SSTATE_DIR = "/home/srv/sstate/master"
-    DL_DIR = "/home/srv/downloads/master"
-    BB_HASHSERVE = "auto"
-    BB_SIGNATURE_HANDLER = "OEEquivHash"
-
+  x11: |
     DISTRO_FEATURES_append = " x11"
     DISTRO_FEATURES_append = " opengl"
