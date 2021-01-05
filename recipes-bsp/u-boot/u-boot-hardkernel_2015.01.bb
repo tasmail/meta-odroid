@@ -20,8 +20,8 @@ UBOOT_MACHINE_odroid-n2 = "odroidn2_defconfig"
 
 BRANCH_odroid-c2 = "odroidc2-v2015.01"
 BRANCH_odroid-c4-hardkernel = "odroidg12-v2015.01"
-BRANCH_odroid-n2-hardkernel = "odroidn2-v2015.01"
-BRANCH_odroid-n2 = "odroidn2-v2015.01"
+BRANCH_odroid-n2-hardkernel = "odroidg12-v2015.01"
+BRANCH_odroid-n2 = "odroidg12-v2015.01"
 
 UBOOT_INITIAL_ENV = ""
 
@@ -71,9 +71,8 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 # TAG s905_6.0.1_v3.7
 SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
 SRCREV_odroid-c4-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
-
-SRCREV_odroid-n2-hardkernel = "odroidn2-v2015.01"
-SRCREV_odroid-n2 = "ca5bdd0f1c291d1ec135cd134e01aa2619203d4c"
+SRCREV_odroid-n2-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
+SRCREV_odroid-n2 = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 
 PR = "${PV}+git${SRCPV}"
 
