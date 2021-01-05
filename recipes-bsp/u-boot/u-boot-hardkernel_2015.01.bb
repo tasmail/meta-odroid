@@ -17,11 +17,13 @@ UBOOT_MACHINE_odroid-c2 = "odroidc2_defconfig"
 UBOOT_MACHINE_odroid-c4-hardkernel = "odroidc4_defconfig"
 UBOOT_MACHINE_odroid-n2-hardkernel = "odroidn2_defconfig"
 UBOOT_MACHINE_odroid-n2 = "odroidn2_defconfig"
+UBOOT_MACHINE_odroid-hc4-hardkernel = "odroidc4_defconfig"
 
 BRANCH_odroid-c2 = "odroidc2-v2015.01"
 BRANCH_odroid-c4-hardkernel = "odroidg12-v2015.01"
 BRANCH_odroid-n2-hardkernel = "odroidg12-v2015.01"
 BRANCH_odroid-n2 = "odroidg12-v2015.01"
+BRANCH_odroid-hc4-hardkernel = "odroidg12-v2015.01"
 
 UBOOT_INITIAL_ENV = ""
 
@@ -45,6 +47,13 @@ SRC_URI_odroid-c4-hardkernel = "\
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
 
+SRC_URI_odroid-hc4-hardkernel = "\
+    ${COMMON_SRC_URI} \
+    file://boot.ini \
+    file://config.ini \
+    https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
+    https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
+    "
 
 SRC_URI_odroid-n2-hardkernel = "\
     ${COMMON_SRC_URI} \
@@ -73,6 +82,7 @@ SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
 SRCREV_odroid-c4-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 SRCREV_odroid-n2-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 SRCREV_odroid-n2 = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
+SRCREV_odroid-hc4-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 
 PR = "${PV}+git${SRCPV}"
 
@@ -91,21 +101,30 @@ EXTRA_OEMAKE_odroid-c2 = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_
 EXTRA_OEMAKE_odroid-c4-hardkernel = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 EXTRA_OEMAKE_odroid-n2-hardkernel = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 EXTRA_OEMAKE_odroid-n2 = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+EXTRA_OEMAKE_odroid-hc4-hardkernel = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 
 LINAROTOOLCHAIN = "4.9.4-2017.01"
 LINAROTOOLCHAIN_odroid-c4-hardkernel = "4.8-2013.11"
 LINAROTOOLCHAIN_odroid-n2-hardkernel = "4.8-2013.11"
 LINAROTOOLCHAIN_odroid-n2 = "4.8-2013.11"
+LINAROTOOLCHAIN_odroid-hc4-hardkernel = "4.8-2013.11"
 TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-linux-gnu-"
 TOOLCHAIN_PREFIX_odroid-c4-hardkernel = "aarch64-linux-gnu-"
+TOOLCHAIN_PREFIX_odroid-hc4-hardkernel = "aarch64-linux-gnu-"
 HOST_PREFIX_odroid-c2 = "${TOOLCHAIN_PREFIX}"
 
 PATH_prepend_odroid-c4-hardkernel ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 PATH_prepend_odroid-n2-hardkernel ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 PATH_prepend_odroid-n2 ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
+PATH_prepend_odroid-hc4-hardkernel ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 
 do_configure_odroid-c4-hardkernel () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidc4_config
+}
+
+do_configure_odroid-hc4-hardkernel () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidc4_config
 }
@@ -141,6 +160,10 @@ do_compile_odroid-n2 () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
 }
 
+do_compile_odroid-hc4-hardkernel () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
+}
+
 do_compile_append () {
 	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
 }
@@ -160,4 +183,4 @@ do_deploy_append() {
 	fi
 }
 
-COMPATIBLE_MACHINE = "(odroid-c2|odroid-c4-hardkernel|odroid-n2-hardkernel|odroid-n2)"
+COMPATIBLE_MACHINE = "(odroid-c2|odroid-c4-hardkernel|odroid-n2-hardkernel|odroid-n2|odroid-hc4-hardkernel)"
