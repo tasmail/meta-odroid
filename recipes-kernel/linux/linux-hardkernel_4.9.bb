@@ -1,27 +1,15 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-LINUX_VERSION ?= "4.9.177"
-LINUX_VERSION_odroid-c4-hardkernel ?= "4.9.236"
+KBRANCH = "odroidg12-4.9.y"
+KBUILD_DEFCONFIG = "odroidg12_defconfig"
 
-KBRANCH ?= "odroidn2-4.9.y"
-KBRANCH_odroid-c4-hardkernel ?= "odroidg12-4.9.y"
-
-SRCREV ?= "c1116eecfb0a085f813ad8925b083e7ffaa7d7d7"
-SRCREV_odroid-c4-hardkernel = "98163ef0bdc56193872fdaed63b95a93560beec5"
-
-KBUILD_DEFCONFIG_odroid-c4-hardkernel = "odroidg12_defconfig"
+SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
+LINUX_VERSION ?= "4.9.241"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
 require linux-hardkernel.inc
 
 KERNEL_EXTRA_FEATURES = ""
-
-O_KERNEL_CONFIG_odroid-n2-hardkernel  = "odroid-n2-hardkernel"
-
-SRC_URI_append_odroid-n2-hardkernel ?= "\
-    file://${O_KERNEL_CONFIG}/defconfig \
-    file://0001-perf-Make-perf-able-to-build-with-latest-libbfd.patch \
-"
 
 do_install_prepend() {
     bbnote "custom kernel_do_install customization"
@@ -29,4 +17,3 @@ do_install_prepend() {
 }
 
 COMPATIBLE_MACHINE = "(odroid-n2-hardkernel|odroid-c4-hardkernel)"
-
