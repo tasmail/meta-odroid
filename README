@@ -1,28 +1,60 @@
 OpenEmbedded BSP layer for hardkernel ODROID devices
 
 Status of support devices:
-The following will boot in 5.x kernel and laste OE uboot
-ODROID-XU3: arm
-ODROID-XU3-lite: arm
-ODROID-XU4: arm
-ODROID-C2: arm64
-ODROID-HC1: arm
-ODROID-h2: x86-64
 
-This boards still uses Hardkernel u-boot: 
-ODROID-n2: arm64; linux-5.3 rc
+Mainline
+################################################################
+The following will boot in 5.x kernel and laste OE uboot
+
+Arm32:
+ODROID-XU3
+ODROID-XU3-lite
+ODROID-XU4
+ODROID-HC1: arm
+
+Arm64:
+ODROID-C2
+
+x86-64:
+ODROID-h2
+
+Hardkernel
+################################################################
+These boards use Hardkernel's u-boot and kernel. Building u-boot
+requires gcc 8.x native which we get from meta-arm-toolchain: 
+
+Arm64:
+ODROID-c2-hardkernel
+ODROID-n2-hardkernel
+ODROID-c4-hardkernel
+ODROID-hc4-hardkernel
+
+These new defines  can be added to local.conf or may be in inherited include files:
+PREFERRED_VERSION_gcc = "8.3"
+GCCVERSION = "arm-8.3"
+
 
 This boards still use either Hardkernel u-boot or kernel or both
 ODROID-c1: hard-kernel-uboot
 
-Mali support is may not work on 4.19 so you may want to use hard-kernel
-emmc support is not working 
+Mail
+################################################################
+Mali support may not work on 4.19 so you may want to use hardkernel.
+emmc support is not working. 
+
+
+
 
 This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
 branch: master
+
+URI: https://git.yoctoproject.org/git/meta-arm
+layers: meta-arm-toolchain
+branch: master
+
 
 Maintenance
 -----------
