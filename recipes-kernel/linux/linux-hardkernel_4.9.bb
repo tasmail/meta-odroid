@@ -16,4 +16,4 @@ do_install_prepend() {
     cp ${B}/arch/arm64/boot/dts/amlogic/*.dtb ${B}/arch/arm64/boot/dts/
 }
 
-COMPATIBLE_MACHINE = "(odroid-n2-hardkernel|odroid-c4-hardkernel)"
+COMPATIBLE_MACHINE = "(odroid-n2-hardkernel|odroid-c4-hardkernel|odroid-hc4-hardkernel)"
