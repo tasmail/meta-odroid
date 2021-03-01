@@ -1,5 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
+SRC_URI += "file://defconfig"
+
 KBRANCH = "odroidg12-4.9.y"
 KBUILD_DEFCONFIG = "odroidg12_defconfig"
 
