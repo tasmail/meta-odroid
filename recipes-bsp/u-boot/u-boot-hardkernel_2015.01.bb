@@ -66,8 +66,8 @@ EXTRA_OEMAKE = 'V=1 HOSTCC="aarch64-none-elf-gcc ${BUILD_CFLAGS} ${BUILD_LDFLAGS
 PATH_prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 
 do_configure () {
-	oe_runmake mrproper CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
-	oe_runmake ${UBOOT_MACHINE} CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
+	oe_runmake mrproper CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
+	oe_runmake ${UBOOT_MACHINE} CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
 }
 
 do_configure_append() {
@@ -80,7 +80,7 @@ do_configure_append() {
 }
 
 do_compile () {
-	oe_runmake CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
+	oe_runmake CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
 }
 
 do_compile_append () {
