@@ -4,11 +4,9 @@ SRC_URI += "file://odroidc4_defconfig"
 
 KBRANCH = "odroidg12-4.9.y"
 
-KBUILD_DEFCONFIG_odroid-n2-hardkernel ?= "odroidg12_defconfig"
-KBUILD_DEFCONFIG_odroid-hc4-hardkernel ?= "odroidg12_defconfig"
-KBUILD_DEFCONFIG_odroid-c4-hardkernel ?= "odroidc4_defconfig"
+KBUILD_DEFCONFIG = "odroidc4_defconfig"
 
-SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
+SRCREV = "91116f8b27e498e99aa50429c2c921b60b4c1875s"
 LINUX_VERSION ?= "4.9.241"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
