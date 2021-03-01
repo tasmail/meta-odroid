@@ -6,7 +6,7 @@ KBRANCH = "odroidg12-4.9.y"
 
 KBUILD_DEFCONFIG = "odroidc4_defconfig"
 
-SRCREV = "91116f8b27e498e99aa50429c2c921b60b4c1875s"
+SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
 LINUX_VERSION ?= "4.9.241"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
