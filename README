@@ -33,6 +33,8 @@ These new defines  can be added to local.conf or may be in inherited include fil
 PREFERRED_VERSION_gcc = "8.3"
 GCCVERSION = "arm-8.3"
 
+Install zlib i386 on the host system:
+sudo apt-get install zlib1g:i386
 
 This boards still use either Hardkernel u-boot or kernel or both
 ODROID-c1: hard-kernel-uboot

@@ -59,50 +59,53 @@ B = "${S}"
 
 inherit uboot-boot-scr
 
-DEPENDS += "bc-native atf-native zlib"
+DEPENDS += "bc-native atf-native"
 
-EXTRA_OEMAKE = 'V=1 HOSTCC="aarch64-none-elf-gcc ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+EXTRA_OEMAKE = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+
+LINAROTOOLCHAIN = "4.8-2013.11"
+
+TOOLCHAIN_PREFIX = "aarch64-linux-gnu-"
 
 PATH_prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
-PATH_prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
+PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 PATH_prepend ="${WORKDIR}/recipe-sysroot/lib:"
 
-
 do_configure () {
-	oe_runmake mrproper CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
-	oe_runmake ${UBOOT_MACHINE} CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
+    CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="" LDFLAGS="" oe_runmake mrproper
+    CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="" LDFLAGS="" oe_runmake ${UBOOT_MACHINE}
 }
 
 do_configure_append() {
-	if [ -e ${WORKDIR}/boot.ini ]; then
-		cp ${WORKDIR}/boot.ini ${B}/
-	fi
-	if [ -e ${WORKDIR}/config.ini ]; then
-		cp ${WORKDIR}/config.ini ${B}/
-	fi
+    if [ -e ${WORKDIR}/boot.ini ]; then
+	cp ${WORKDIR}/boot.ini ${B}/
+    fi
+    if [ -e ${WORKDIR}/config.ini ]; then
+	cp ${WORKDIR}/config.ini ${B}/
+    fi
 }
 
 do_compile () {
-	oe_runmake CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDFLAGS}"
+    CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="" LDFLAGS="" oe_runmake
 }
 
 do_compile_append () {
-	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
+    cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
 }
 
 do_install_append() {
-	if [ -e ${B}/config.ini ]; then
-		install -m 644 ${B}/config.ini ${D}/boot/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
-		ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${D}/boot/config.ini
-	fi
+    if [ -e ${B}/config.ini ]; then
+	install -m 644 ${B}/config.ini ${D}/boot/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
+	ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${D}/boot/config.ini
+    fi
 }
 
 do_deploy_append() {
-	if [ -e ${B}/config.ini ]; then
-		install -m 644 ${B}/config.ini ${DEPLOYDIR}/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
+    if [ -e ${B}/config.ini ]; then
+	install -m 644 ${B}/config.ini ${DEPLOYDIR}/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
                 rm -f ${DEPLOYDIR}/config.ini
-		ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${DEPLOYDIR}/config.ini
-	fi
+	ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${DEPLOYDIR}/config.ini
+    fi
 }
 
 COMPATIBLE_MACHINE = "(odroid-c4-hardkernel|odroid-n2-hardkernel|odroid-n2|odroid-hc4-hardkernel)"
