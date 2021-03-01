@@ -9,10 +9,7 @@ DEPENDS = "lzop-native"
 SRC_URI = "git://github.com/hardkernel/linux.git;branch=${KBRANCH} \
 file://odroidc4_defconfig"
 
-KBUILD_DEFCONFIG = ""
-KBUILD_DEFCONFIG_odroid-c4-hardkernel = "odroidc4_defconfig"
-KBUILD_DEFCONFIG_odroid-n2-hardkernel = "odroidg12_defconfig"
-KBUILD_DEFCONFIG_odroid-hc4-hardkernel = "odroidg12_defconfig"
+KBUILD_DEFCONFIG = "odroidc4_defconfig"
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
