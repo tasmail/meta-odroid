@@ -59,20 +59,15 @@ B = "${S}"
 
 inherit uboot-boot-scr
 
-DEPENDS += "bc-native atf-native"
+DEPENDS += "bc-native atf-native zlib"
 
-EXTRA_OEMAKE = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
-
-LINAROTOOLCHAIN = "4.8-2013.11"
-
-TOOLCHAIN_PREFIX = "aarch64-linux-gnu-"
+EXTRA_OEMAKE = 'V=1 HOSTCC="aarch64-none-elf-gcc ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 
 PATH_prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
-PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 
 do_configure () {
-	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
-	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake ${UBOOT_MACHINE}
+	oe_runmake mrproper CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
+	oe_runmake ${UBOOT_MACHINE} CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
 }
 
 do_configure_append() {
@@ -85,7 +80,7 @@ do_configure_append() {
 }
 
 do_compile () {
-	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
+	oe_runmake CROSS_COMPILE=aarch64-none-elf- ARCH=arm64 CFLAGS="${BUILD_CFLAGS}" LDFLAGS="${BUILD_LDLAGS}"
 }
 
 do_compile_append () {
