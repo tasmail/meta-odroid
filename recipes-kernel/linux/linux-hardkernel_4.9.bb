@@ -1,10 +1,12 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-
 KBRANCH = "odroidg12-4.9.y"
 
 SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
 LINUX_VERSION ?= "4.9.241"
+LINUX_VERSION_EXTENSION = "-maxcrc"
+
+KBUILD_DEFCONFIG = "odroidg12_defconfig"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
 
