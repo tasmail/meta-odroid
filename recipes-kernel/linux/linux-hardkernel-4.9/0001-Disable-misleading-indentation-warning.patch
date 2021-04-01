@@ -32,7 +32,7 @@ index 3b3f32b426d1..1852ee37e185 100644
 @@ -1,5 +1,6 @@
  dvb-usb-objs += dvb-usb-firmware.o dvb-usb-init.o dvb-usb-urb.o dvb-usb-i2c.o
  dvb-usb-objs += dvb-usb-dvb.o dvb-usb-remote.o usb-urb.o
-+CFLAGS_dvb-usb-remote.o = -Wno-error=array-parameter
++CFLAGS_dvb-usb-remote.o = -Wno-error
  obj-$(CONFIG_DVB_USB) += dvb-usb.o
  
  dvb-usb-vp7045-objs := vp7045.o vp7045-fe.o
