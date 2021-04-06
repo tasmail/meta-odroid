@@ -33,6 +33,10 @@ SRC_URI_append_odroid-c4-hardkernel = "\
     file://config.ini \
     "
 
+SRC_URI_append_odroid-n2-hardkernel = "\
+    file://config.ini \
+    "
+
 SRC_URI_append_odroid-hc4-hardkernel = "\
     file://config.ini \
     "
