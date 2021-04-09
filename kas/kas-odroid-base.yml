@@ -22,12 +22,6 @@ repos:
     layers:
       meta-oe:
 
-  meta-arm:
-    url: https://git.yoctoproject.org/git/meta-arm
-    refspec: master
-    layers:
-      meta-arm-toolchain:
-
 local_conf_header:
   meta-odroid: |
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
