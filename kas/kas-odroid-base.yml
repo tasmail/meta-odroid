@@ -24,6 +24,8 @@ repos:
 
 local_conf_header:
   meta-odroid: |
+    INHERIT += "buildstats buildstats-summary buildhistory"
+    INHERIT += "report-error"
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
     SSTATE_MIRRORS = "file://.* http://sstate.yoctoproject.org/dev/PATH;downloadfilename=PATH \n"
     BB_HASHSERVE = "auto"

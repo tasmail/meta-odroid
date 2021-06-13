@@ -1,83 +1,133 @@
-stages:
-  - build
+.after-my-script: &after-my-script
+    - cd $CI_PROJECT_DIR/poky
+    - . ./oe-init-build-env $CI_PROJECT_DIR/build
+    - for x in `ls $CI_PROJECT_DIR/build/tmp/log/error-report/ | grep error_report_`; do
+    - send-error-report -y tmp/log/error-report/$x
+    - done
 
-.build:
-  stage: build
+stages:
+    - prep 
+    - x86
+    - x86-post
+    - xu
+    - xu-post
+    - meson32
+    - meson64
+    - meson64-post
+
+.prep:
+  stage: prep
   before_script:
+    - rm -fr $CI_PROJECT_DIR/build
+    - echo "$ERR_REPORT_USERNAME" > ~/.oe-send-error
+    - echo "$ERR_REPORT_EMAIL" >> ~/.oe-send-error
     - export PATH=~/.local/bin:$PATH
     - wget https://bootstrap.pypa.io/get-pip.py
     - python3 get-pip.py
     - python3 -m pip install kas
-  after_script:
-    - rm -rf build
-    - ./scripts/ci-cleanup.sh
+
+.xu:
+    stage: xu 
+    after_script:
+    - *after-my-script
+
+.xu-post:
+    stage: xu-post 
+    after_script:
+    - rm -fr $CI_PROJECT_DIR/build
+
+.meson32:
+    stage: meson32 
+    after_script:
+    - *after-my-script
+    - rm -fr $CI_PROJECT_DIR/build
+
+.meson64:
+    stage: meson64 
+    after_script:
+    - *after-my-script
+
+.meson64-post:
+    stage: meson64-post 
+    after_script:
+    - rm -fr $CI_PROJECT_DIR/build
+
+.x86:
+    stage: x86 
+    after_script:
+    - *after-my-script
+
+.x86-post:
+    stage:  x86-post
+    after_script:
+    - rm -fr $CI_PROJECT_DIR/build
 
 odroid-xu3-lite:
-  extends: .build
+  extends: .xu
   script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-c1:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-c2:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-c4:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-h2:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-xu4:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-hc1:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
 odroid-xu3:
-  extends: .build
+  extends: .xu
   script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
-odroid-c4-hardkernel:
-  extends: .build
+odroid-xu4:
+  extends: .xu
   script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
-odroid-c4:
-  extends: .build
+odroid-hc1:
+  extends: .xu
   script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-hc4-hardkernel:
-  extends: .build
-  script:
-  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
-
-odroid-xu3-lite-x11:
-  extends: .build
-  script:
-  - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
-
-odroid-h2-x11:
-  extends: .build
-  script:
-  - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
 odroid-xu4-x11:
-  extends: .build
+  extends: .xu
+  script:
+  - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
+
+odroid-xu3-lite-x11:
+  extends: .xu
+  script:
+  - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
+
+odroid-c1:
+  extends: .meson32
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-c2:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-c4-hardkernel:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-hc4-hardkernel:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-n2:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-n2-hardkernel:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-h2:
+  extends: .x86
+  script:
+  - kas build --target core-image-minimal kas/$CI_JOB_NAME.yml
+
+odroid-h2-x11:
+  extends: .x86
   script:
   - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
