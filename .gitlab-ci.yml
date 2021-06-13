@@ -11,9 +11,6 @@ stages:
   after_script:
     - rm -rf build
     - ./scripts/ci-cleanup.sh
-  cache:
-    paths:
-      - layers
 
 odroid-xu3-lite:
   extends: .build
@@ -26,6 +23,11 @@ odroid-c1:
   - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
 
 odroid-c2:
+  extends: .build
+  script:
+  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
+
+odroid-c4:
   extends: .build
   script:
   - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
@@ -51,6 +53,11 @@ odroid-xu3:
   - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
 
 odroid-c4-hardkernel:
+  extends: .build
+  script:
+  - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
+
+odroid-c4:
   extends: .build
   script:
   - kas build --target core-image-base  kas/$CI_JOB_NAME.yml
