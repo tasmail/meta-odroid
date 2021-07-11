@@ -25,9 +25,9 @@ Index: git/drivers/mmc/meson_gx_mmc.c
 ===================================================================
 --- git.orig/drivers/mmc/meson_gx_mmc.c
 +++ git/drivers/mmc/meson_gx_mmc.c
-@@ -37,6 +37,9 @@ static void meson_mmc_config_clock(struc
- 	if (!mmc->clock)
- 		return;
+@@ -52,6 +52,9 @@ static void meson_mmc_config_clock(struc
+ 
+ 	/* TOFIX This should use the proper clock taken from DT */
  
 +	if (!mmc->clock)
 +		return;
