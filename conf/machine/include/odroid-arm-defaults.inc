@@ -54,8 +54,6 @@ UBOOT_XTRA_CMDLINE ?=  "${@bb.utils.contains('DISTRO_FEATURES', 'TS_vu7+', 'usbh
 
 IMAGE_BOOT_FILES ?= "${UBOOT_SCRIPT}"
 
-MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
-
 EXTRA_IMAGEDEPENDS:append = " u-boot secure-odroid"
 EXTRA_IMAGEDEPENDS:append = " ${@bb.utils.contains("DISTRO_FEATURES", "x11", " odroid-edid", " ", d)}"
 IMAGE_INSTALL:append = " kernel-devicetree"
