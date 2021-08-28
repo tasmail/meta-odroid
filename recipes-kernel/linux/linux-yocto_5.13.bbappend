@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-5.10:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-5.13:"
 
 
 SRC_URI:append = " file://odroid-kmeta;type=kmeta;name=odroid-kmeta;destsuffix=odroid-kmeta"
