@@ -76,5 +76,5 @@ IMAGE_CMD:wic:append:odroid-c4-hardkernel() {
 }
 
 IMAGE_CMD:wic:append:odroid-c4() {
-    generic_odroid_c4_wic_cmd
+    generic_odroid_n2_wic_cmd
 }

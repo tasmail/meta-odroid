@@ -53,7 +53,7 @@ UBOOT_INITRD_NAME ?= ""
 UBOOT_INITRD_ADDR ?= "-"
 UBOOT_ROOT_ARGS ?= "rw rootwait"
 UBOOT_NFS_ARGS ?= ",tcp,v3,wsize=8192,rsize=8192"
-UBOOT_ROOT_mmc ?= "mmcblk1p2 ${UBOOT_ROOT_ARGS}"
+UBOOT_ROOT_mmc ?= "mmcblk0p2 ${UBOOT_ROOT_ARGS}"
 UBOOT_ROOT_nfs ?= "nfs ${UBOOT_ROOT_ARGS}"
 
 UBOOT_CONSOLE ?= ""
