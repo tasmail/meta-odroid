@@ -102,22 +102,17 @@ odroid-c2:
   script:
   - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
-odroid-c4-hardkernel:
-  extends: .meson64
-  script:
-  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
-
-odroid-hc4-hardkernel:
-  extends: .meson64
-  script:
-  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
-
 odroid-n2:
   extends: .meson64
   script:
   - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
-odroid-n2-hardkernel:
+odroid-c4:
+  extends: .meson64
+  script:
+  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
+
+odroid-hc4:
   extends: .meson64
   script:
   - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
