@@ -7,6 +7,7 @@ inherit ${@oe.utils.conditional('MACHINE', 'odroid-hc1', 'uboot-boot-scr', '', d
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu3-lite', 'uboot-boot-scr', '', d)}
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-n2', 'uboot-boot-scr', '', d)}
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-c4', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-hc4', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
 SRC_URI:append:odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
@@ -38,7 +39,7 @@ SRC_URI:append:odroid-n2 = "\
     file://odroid-n2/acs.bin \
 "
 
-SRC_URI:append:odroid-c4 = "\
+S905X3_uboot = "\
     file://odroid-c4/blx_fix.sh \
     file://odroid-c4/acs.bin \
     file://odroid-c4/aml_encrypt_g12a \
@@ -57,6 +58,9 @@ SRC_URI:append:odroid-c4 = "\
     file://odroid-c4/piei.fw \
     file://odroid-c4/aml_ddr.fw \
 "
+
+SRC_URI:append:odroid-c4 = "${S905X3_uboot}"
+SRC_URI:append:odroid-hc4 = "${S905X3_uboot}"
 
 do_compile:append:odroid-c2 () {
 
@@ -113,7 +117,7 @@ do_compile:append:odroid-n2 () {
         --level v3
 }
 
-do_compile:append:odroid-c4 () {
+compile_s905x3 () {
     cd ${WORKDIR}/odroid-c4
     chmod +x ./blx_fix.sh
 
@@ -159,6 +163,13 @@ do_compile:append:odroid-c4 () {
         --level v3
 }
 
+do_compile:append:odroid-c4 () {
+    compile_s905x3
+}
+
+do_compile:append:odroid-hc4 () {
+    compile_s905x3
+}
 
 do_install:append () {
     if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'emmc', 'emmc', '', d)}" ]; then
@@ -180,3 +191,4 @@ COMPATIBLE_MACHINE:odroid-xu3-lite  = "odroid-xu3-lite"
 COMPATIBLE_MACHINE:odroid-hc1  = "odroid-hc1"
 COMPATIBLE_MACHINE:odroid-n2  = "odroid-n2"
 COMPATIBLE_MACHINE:odroid-c4  = "odroid-c4"
+COMPATIBLE_MACHINE:odroid-hc4  = "odroid-hc4"
