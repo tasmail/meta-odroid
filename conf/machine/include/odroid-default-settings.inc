@@ -25,13 +25,8 @@ WKS_FILE_DEPENDS ?= " \
     bmap-tools-native \
 "
 
-MACHINE_FEATURES:append = " serial usbgadget usbhost vfat ext2"
+MACHINE_FEATURES:append = " serial usbgadget usbhost ext2"
 
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
-
-IMAGE_INSTALL:append = " dosfstools mtools kernel-image kernel-modules"
-
-KERNEL_EXTRA_FEATURES ?= "cfg/fs/vfat.scc"
-KERNEL_FEATURES:append = " ${KERNEL_EXTRA_FEATURES}"
 
 IMAGE_FSTYPES ?= " ext4 wic wic.xz"

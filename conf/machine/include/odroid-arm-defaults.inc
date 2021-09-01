@@ -54,8 +54,14 @@ UBOOT_XTRA_CMDLINE ?=  "${@bb.utils.contains('DISTRO_FEATURES', 'TS_vu7+', 'usbh
 
 IMAGE_BOOT_FILES ?= "${UBOOT_SCRIPT}"
 
+MACHINE_FEATURES:append = " vfat"
+
+KERNEL_FEATURES:append = " cfg/fs/vfat.scc"
+
 EXTRA_IMAGEDEPENDS:append = " u-boot secure-odroid"
 EXTRA_IMAGEDEPENDS:append = " ${@bb.utils.contains("DISTRO_FEATURES", "x11", " odroid-edid", " ", d)}"
-IMAGE_INSTALL:append = " kernel-devicetree"
 
+IMAGE_INSTALL:append = " kernel-image kernel-devicetree"
 IMAGE_CLASSES += "image_types_odroid"
+
+
