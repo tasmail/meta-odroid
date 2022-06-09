@@ -18,3 +18,5 @@ do_install_prepend() {
     bbnote "custom kernel_do_install customization"
     cp ${B}/arch/arm64/boot/dts/amlogic/*.dtb ${B}/arch/arm64/boot/dts/
 }
+
+KERNEL_MODULE_AUTOLOAD += "rtc-pcf8563"
