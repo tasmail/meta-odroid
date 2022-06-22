@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
 KBRANCH = "odroidg12-4.9.y"
 
-SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
+SRCREV = "20d79ab6a52a20842a18dfb63d67cb66004fe0ea"
 LINUX_VERSION ?= "4.9.241"
 LINUX_VERSION_EXTENSION = "-maxcrc"
 
@@ -10,6 +10,7 @@ LINUX_VERSION_EXTENSION = "-maxcrc"
 EXTRA_OEMAKE_append = " KBUILD=${B}"
 
 require linux-hardkernel.inc
+SRC_URI_append = " file://oe.scc"
 
 KERNEL_EXTRA_FEATURES = ""
 
