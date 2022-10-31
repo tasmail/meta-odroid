@@ -48,7 +48,7 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 
 SRCREV = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 
-PR = "${PV}+git${SRCPV}"
+PR = "${PV}+git${SRCPV}_r1"
 
 UBOOT_SUFFIX ?= "bin"
 

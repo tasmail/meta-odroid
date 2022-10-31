@@ -6,6 +6,7 @@ SRCREV = "f9de720d006b32db1a6265033fbff23b8648f0ff"
 LINUX_VERSION ?= "4.9.241"
 LINUX_VERSION_EXTENSION = "-maxcrc"
 
+PR = "r1"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
 
